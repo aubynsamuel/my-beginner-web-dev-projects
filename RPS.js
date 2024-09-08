@@ -37,7 +37,7 @@ function connectToServer() {
 }
 
 function handleGameData(data) {
-    const player1Choice = dat.player1Choice;
+    const player1Choice = data.player1Choice;
     const player2Choice = data.player2Choice;
 
     // Display the choices
