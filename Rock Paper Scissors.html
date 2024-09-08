@@ -4,23 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors Multiplayer</title>
+    <title>Rock Paper Scissors Game</title>
     <link rel="stylesheet" href="rps.css">
 </head>
 
 <body>
-    <h1>Rock Paper Scissors - Multiplayer</h1>
-    <label>Player's Choice: </label>
-    <label id="user">Waiting for your choice...</label><br>
-    <label>Opponent's Choice: </label>
-    <label id="opponent">Waiting for opponent...</label><br>
+    <h1>Rock Paper Scissors</h1>
+    <label>Best of 7 Rounds</label> <br><br>
+    <label id="Computer">Opponent's Choice</label><br>
+    <label id="user">Your Choice</label><br>
     <label id="result">Outcome</label><br>
 
-    <button id="Rock">Rock</button>
-    <button id="Paper">Paper</button>
-    <button id="Scissors">Scissors</button> <br>
+    <button id="Rock" onclick="play('Rock')">Rock</button>
+    <button id="Paper" onclick="play('Paper')">Paper</button>
+    <button id="Scissors" onclick="play('Scissors')">Scissors</button> <br>
+    <label id="scores">Scores</label> <br>
     <label id="finalResult"></label><br>
-
+    <div id="playAgain">
+        <label>Do You Want To Play Again</label><br>
+        <button id="yesBt">Yes</button>
+        <button id="noBt">No</button>
+    </div>
     <script src="RPS.js"></script>
 </body>
 
