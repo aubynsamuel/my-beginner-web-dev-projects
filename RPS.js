@@ -10,7 +10,7 @@ const score = document.getElementById("scores");
 
 // Function to connect to the WebSocket server
 function connectToServer() {
-    ws = new WebSocket("ws://localhost:8000"); // Connect to the WebSocket server
+    ws = new WebSocket("ws://192.168.126.88:8000"); // Connect to the WebSocket server
 
     ws.onopen = () => {
         console.log("Connected to server");

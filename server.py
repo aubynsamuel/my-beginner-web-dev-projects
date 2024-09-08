@@ -62,10 +62,10 @@ def determine_winner(choice1, choice2):
         return "Player 2 wins!"
 
 async def main():
-    async with websockets.serve(handle_client, "localhost", 8000):
-        print("Server started on ws://localhost:8000")
+    # Replace "localhost" with your local IP address
+    async with websockets.serve(handle_client, "192.168.126.88", 8000):
+        print("Server started on ws://192.168.126.88:8000")
         await asyncio.Future()  # Run forever
 
 if __name__ == "__main__":
     asyncio.run(main())
-#new repo
