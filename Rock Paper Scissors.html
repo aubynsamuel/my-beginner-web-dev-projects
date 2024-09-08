@@ -10,21 +10,33 @@
 
 <body>
     <h1>Rock Paper Scissors</h1>
-    <label>Best of 7 Rounds</label> <br><br>
-    <label id="Computer">Opponent's Choice</label><br>
-    <label id="user">Your Choice</label><br>
-    <label id="result">Outcome</label><br>
 
-    <button id="Rock" onclick="play('Rock')">Rock</button>
-    <button id="Paper" onclick="play('Paper')">Paper</button>
-    <button id="Scissors" onclick="play('Scissors')">Scissors</button> <br>
-    <label id="scores">Scores</label> <br>
-    <label id="finalResult"></label><br>
-    <div id="playAgain">
-        <label>Do You Want To Play Again</label><br>
-        <button id="yesBt">Yes</button>
-        <button id="noBt">No</button>
+    <!-- Name Entry Form -->
+    <div id="nameForm">
+        <label for="playerName">Enter your name:</label>
+        <input type="text" id="playerName" placeholder="Your name">
+        <button id="submitName">Submit</button>
     </div>
+
+    <div id="gameArea" style="display: none;"> <!-- Hide game area until name is submitted -->
+        <label>Best of 7 Rounds</label> <br><br>
+        <label id="Computer">Opponent's Choice</label><br>
+        <label id="user">Your Choice</label><br>
+        <label id="result">Outcome</label><br>
+
+        <button id="Rock" onclick="play('Rock')">Rock</button>
+        <button id="Paper" onclick="play('Paper')">Paper</button>
+        <button id="Scissors" onclick="play('Scissors')">Scissors</button> <br>
+        <label id="scores">Scores</label> <br>
+        <label id="finalResult"></label><br>
+
+        <div id="playAgain">
+            <label>Do You Want To Play Again?</label><br>
+            <button id="yesBt">Yes</button>
+            <button id="noBt">No</button>
+        </div>
+    </div>
+
     <script src="RPS.js"></script>
 </body>
 
