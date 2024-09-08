@@ -3,18 +3,14 @@ let playerId; // Will be 1 or 2
 let userScore = 0;
 let opponentScore = 0;
 
-const computersOptions = ["Rock", "Paper", "Scissors"];
-const computerCDisplay = document.getElementById("Computer");
+const opponentCDisplay = document.getElementById("Computer");
 const userCDisplay = document.getElementById("user");
 const resultDisplay = document.getElementById("result");
 const score = document.getElementById("scores");
-const playAgainDiv = document.getElementById("playAgain");
-const yesBtn = document.getElementById("yesBt");
-const noBtn = document.getElementById("noBt");
 
 // Function to connect to the WebSocket server
 function connectToServer() {
-    ws = new WebSocket("ws://localhost:8000"); // Replace with your server address if needed
+    ws = new WebSocket("ws://localhost:8000"); // Connect to the WebSocket server
 
     ws.onopen = () => {
         console.log("Connected to server");
@@ -27,6 +23,7 @@ function connectToServer() {
             resultDisplay.textContent = data.message;
             if (data.message === "Game starting...") {
                 playerId = data.player; // Assign player ID
+                console.log(`You are Player ${playerId}`);
             }
         } else {
             // Game data received
@@ -36,32 +33,56 @@ function connectToServer() {
 
     ws.onclose = () => {
         console.log("Disconnected from server");
-        // Handle disconnection (e.g., show a message)
     };
 }
 
 function handleGameData(data) {
-    computerCDisplay.textContent = `Opponent's Choice: ${data.player2Choice}`; // Assuming player 2 is the opponent
-    userCDisplay.textContent = `Your Choice: ${data.player1Choice}`; // Assuming player 1 is the user
+    const player1Choice = dat.player1Choice;
+    const player2Choice = data.player2Choice;
 
+    // Display the choices
+    if (playerId === 1) {
+        userCDisplay.textContent = `Your Choice: ${player1Choice}`;
+        opponentCDisplay.textContent = `Opponent's Choice: ${player2Choice}`;
+    } else {
+        userCDisplay.textContent = `Your Choice: ${player2Choice}`;
+        opponentCDisplay.textContent = `Opponent's Choice: ${player1Choice}`;
+    }
+
+    // Display the result
     resultDisplay.textContent = data.result;
 
-    // Update scores (you'll need to adjust logic based on player IDs)
-    if (data.result.startsWith("Player 1")) {
-        userScore++;
-    } else if (data.result.startsWith("Player 2")) {
-        opponentScore++;
+    // Update scores
+    if (data.result.startsWith("Player 1 wins")) {
+        if (playerId === 1) {
+            userScore++;
+        } else {
+            opponentScore++;
+        }
+    } else if (data.result.startsWith("Player 2 wins")) {
+        if (playerId === 2) {
+            userScore++;
+        } else {
+            opponentScore++;
+        }
     }
-    score.innerHTML = `You ${userScore} Vs ${opponentScore} Opponent`;
 
-    // ... (rest of your game logic, like checking for a win)
+    // Update the score display
+    score.innerHTML = `You: ${userScore} Vs Opponent: ${opponentScore}`;
 }
 
 function play(usersChoice) {
-    ws.send(JSON.stringify({ player: playerId, choice: usersChoice }));
+    if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ player: playerId, choice: usersChoice }));
+    } else {
+        console.log("WebSocket connection is not open.");
+    }
 }
 
-// ... (rest of your JavaScript code)
+// Attach event listeners to buttons
+document.getElementById("Rock").addEventListener("click", () => play("Rock"));
+document.getElementById("Paper").addEventListener("click", () => play("Paper"));
+document.getElementById("Scissors").addEventListener("click", () => play("Scissors"));
 
 // Connect to the server when the page loads
 window.onload = connectToServer;
