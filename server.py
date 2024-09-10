@@ -6,6 +6,7 @@ connected_clients = []
 player_scores = {}
 player_names = {}  # Store player names
 player_choices = {}
+ipAddress = "192.168.78.146"
 
 async def handle_client(websocket, path):
     global player_scores, player_names, player_choices
@@ -25,7 +26,7 @@ async def handle_client(websocket, path):
             # Start the game when both players are connected
             for client in connected_clients:
                 await client.send(json.dumps({
-                    "message": "Game starting...",
+                    "message": "Game has started, select an option...",
                     "playerName": player_names[client]
                 }))
 
@@ -91,8 +92,8 @@ def determine_winner(choice1, choice2):
         return f"{list(player_choices.keys())[1]} wins!"
 
 async def main():
-    async with websockets.serve(handle_client, "192.168.126.88", 8000):
-        print("Server started on ws://192.168.126.88:8000")
+    async with websockets.serve(handle_client, ipAddress, 8000):
+        print("Server started on ws://" + ipAddress +":8000")
         await asyncio.Future()  # Run forever
 
 if __name__ == "__main__":

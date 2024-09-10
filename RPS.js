@@ -2,6 +2,7 @@ let ws; // WebSocket connection
 let playerName; // Store player's name
 let userScore = 0;
 let opponentScore = 0;
+let ipAdress = "192.168.78.146";
 
 const computersOptions = ["Rock", "Paper", "Scissors"];
 const computerCDisplay = document.getElementById("Computer");
@@ -18,7 +19,7 @@ gameArea.style.display = "none"; // Hide the game area until the name is submitt
 
 // Function to connect to the WebSocket server
 function connectToServer() {
-    ws = new WebSocket("ws://192.168.126.88:8000"); // Update with your server IP
+    ws = new WebSocket("ws://"+ ipAdress +":8000"); // Update with your server IP
 
     ws.onopen = () => {
         console.log("Connected to server");
