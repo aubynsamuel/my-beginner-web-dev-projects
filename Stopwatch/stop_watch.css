@@ -1,0 +1,37 @@
+body {
+    padding: 4%;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    /* Changed font to a more common sans-serif font */
+    color: rgb(0, 0, 0);
+    /* Changed text color to black for better readability */
+    background-color: rgb(129, 202, 180);
+    /* Adjusted background gradient colors */
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.time {
+    color: navy;
+    /* Changed time display color to navy blue */
+    font-family: 'Arial', sans-serif;
+    /* Changed font for time display */
+    font-size: 35px;
+    /* Slightly increased font size for better visibility */
+    margin-bottom: 20px;
+    /* Added margin to separate time display from buttons */
+}
+
+button {
+    text-align: center;
+    width: 120px;
+    cursor: pointer;
+    border: 1px solid;
+    font-size: 18px;
+    &:hover {
+        background-color: rgb(0, 0, 0); /* Darkened button color on hover for better feedback */
+        color: rgb(255, 255, 255); /* Changed text color to white on hover */
+        /* font-size: 25px; */
+    }
+}

@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #5ff366bd;
+    text-align: center;
+    padding: 20px;
+}
+
+#date {
+    font-size: 18px;
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+#timer {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(131, 21, 21, 0.1);
+    display: inline-block;
+}
+
+#timer::before {
+    content: "Current Time: ";
+    font-size: 16px;
+    color: #444444;
+    display: block;
+    margin-bottom: 5px;
+}
